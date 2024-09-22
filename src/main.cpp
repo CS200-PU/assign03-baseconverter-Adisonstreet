@@ -17,8 +17,11 @@
 using namespace std;
 const string BIN = "0b";
 const string HEX = "0x";
-const string PROMPT = "HEX-DECIMAL-BINARY CONVERTER";
-
+const string TITLE = "HEX-DECIMAL-BINARY CONVERTER";
+const string PROMPT = "Enter your string to convert (q to quit): ";
+const string BIN_CONV = "The binary conversion is: ";
+const string DEC_CONV = "The decimal conversion is: ";
+const string HEX_CONV = "The hexadecimal conversion is: ";
 
 int hexCharToInt (char hexDigit);
 char getBase (const string& strNumber);
@@ -28,16 +31,33 @@ string binaryToDecimal (const string& strNumber);
 string decimalToBinary (const string& strNumber);
 string decimalToHex (const string& strNumber);
 string hexToDecimal (const string& strNumber);
+string hexToBinary (const string& strNumber);
+string binaryToHex (const string& strNumber);
 
 int main () {
-  string decimal;
+  string decimal, userInput;
+  char base = ' ';
+  printTitle(TITLE);
 
-  decimal = binaryToDecimal("0b0011001");
+  userInput = getNumber(PROMPT);
+  while(userInput != "q"){
+    base = getBase(userInput);
 
-  //printTitle(PROMPT);
-  
-  cout << decimal << endl;
-  
+    if(base == 'd'){
+      cout << BIN_CONV << BIN << decimalToBinary(userInput) << endl;
+      cout << HEX_CONV << HEX << decimalToHex(userInput) << endl;
+    }else if(base == 'h'){
+      cout << DEC_CONV << hexToDecimal(userInput) << endl;
+      cout << BIN_CONV << BIN << hexToBinary(userInput) << endl;
+    }else if(base == 'b'){
+      cout << DEC_CONV << binaryToDecimal(userInput) << endl;
+      cout << HEX_CONV << HEX << binaryToHex(userInput) << endl;
+    }
+    
+    userInput = getNumber(PROMPT);
+
+  }
+
   return EXIT_SUCCESS;
 }
 /**/////////////////////////////////////////////////////////////////
@@ -56,11 +76,11 @@ int hexCharToInt (char hexDigit){
 char getBase (const string& strNumber){
   char base = '\0';
   if(strNumber[0] == BIN[0] && strNumber[1] == BIN[1]){
-    base = 'B';
+    base = 'b';
   }else if(strNumber[0] == HEX[0] && strNumber[1] == HEX[1]){
-    base = 'H';
+    base = 'h';
   }else{
-    base = 'D';
+    base = 'd';
   }
   return base;
 }
@@ -70,7 +90,6 @@ string getNumber (const string& prompt){
   string userString;
   cout << prompt;
   cin >> userString;
-  cout << endl;
   return userString;
 }
 /**/////////////////////////////////////////////////////////////////
@@ -156,3 +175,11 @@ string getNumber (const string& prompt){
   }
 /**/////////////////////////////////////////////////////////////////
 
+string hexToBinary (const string& strNumber){
+  return decimalToBinary(hexToDecimal(strNumber));
+}
+/**/////////////////////////////////////////////////////////////////
+
+ string binaryToHex (const string& strNumber){
+  return decimalToHex(binaryToDecimal(strNumber));
+ }
