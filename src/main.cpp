@@ -32,9 +32,9 @@ string hexToDecimal (const string& strNumber);
 int main () {
   string decimal;
 
-  decimal = hexToDecimal("0xFF");
+  decimal = binaryToDecimal("0b0011001");
 
-  printTitle(PROMPT);
+  //printTitle(PROMPT);
   
   cout << decimal << endl;
   
@@ -128,9 +128,9 @@ string getNumber (const string& prompt){
       hexInt = length % 16;
       if(hexInt <= 9){
 
-        hexChar = hexInt + 48;
+        hexChar = hexInt + '0';
       }else{
-        hexChar = hexInt + 55;
+        hexChar = hexInt + '7';
       }
       hexString += hexChar;
       length = length / 16;
