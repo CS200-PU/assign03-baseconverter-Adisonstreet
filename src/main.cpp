@@ -12,10 +12,12 @@
 #include <string>
 #include <math.h>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 const string BIN = "0b";
 const string HEX = "0x";
+const string PROMPT = "HEX-DECIMAL-BINARY CONVERTER";
 
 
 int hexCharToInt (char hexDigit);
@@ -32,7 +34,7 @@ int main () {
 
   decimal = hexToDecimal("0xFF");
 
-  //decimal = decimalToHex("1000");
+  printTitle(PROMPT);
   
   cout << decimal << endl;
   
@@ -45,7 +47,7 @@ int hexCharToInt (char hexDigit){
   if(hexDigit <= '9' && hexDigit >= '0'){
     decimal = static_cast<int>(hexDigit - '0');
   }else{
-    decimal = static_cast<int>(hexDigit - 55);
+    decimal = static_cast<int>(hexDigit - '7');
   }
   return decimal;
 }
@@ -74,7 +76,10 @@ string getNumber (const string& prompt){
 /**/////////////////////////////////////////////////////////////////
 
  void printTitle (const string& myTitle){
-  cout << myTitle;
+  cout << setfill('*') << setw(38) << "*" << endl;
+  cout << setfill('*') << setw(5) << "*" << myTitle << 
+          setfill('*') << setw(5) << "*" << endl;
+  cout << setfill('*') << setw(38) << "*" << endl;
  }
 /**/////////////////////////////////////////////////////////////////
 
