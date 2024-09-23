@@ -1,11 +1,11 @@
 //******************************************************************************
 // File name:   main.cpp
-// Author:      CS Faculty
-// Date:        xx/xx/xxxx (Replace xx/xx/xxxx with month/day/year)
-// Class:       CS150-xx (Replace xx with your section number)
-// Assignment:  Hello World
-// Purpose:     Display the message Hello World to the screen
-// Hours:       0.25
+// Author:      Adison Street
+// Date:        9/22/2024 (Replace xx/xx/xxxx with month/day/year)
+// Class:       CS200 
+// Assignment:  BASECONVERTER
+// Purpose:     convert different strings to different forms
+// Hours:       10+
 //******************************************************************************
 
 #include <iostream>
@@ -38,11 +38,9 @@ int main () {
   string decimal, userInput;
   char base = ' ';
   printTitle(TITLE);
-
   userInput = getNumber(PROMPT);
   while(userInput != "q"){
     base = getBase(userInput);
-
     if(base == 'd'){
       cout << BIN_CONV << BIN << decimalToBinary(userInput) << endl;
       cout << HEX_CONV << HEX << decimalToHex(userInput) << endl;
@@ -53,14 +51,21 @@ int main () {
       cout << DEC_CONV << binaryToDecimal(userInput) << endl;
       cout << HEX_CONV << HEX << binaryToHex(userInput) << endl;
     }
-    
     userInput = getNumber(PROMPT);
-
   }
-
   return EXIT_SUCCESS;
 }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: hexCharToInt
+
+    Purpose: change the char from the hex into an int
+
+    parameters: hexDiigit 
+
+    return int from hex 
+
+/*/////////////////////////////////////////////////////////////////
 
 int hexCharToInt (char hexDigit){
   int decimal = 0;
@@ -71,7 +76,17 @@ int hexCharToInt (char hexDigit){
   }
   return decimal;
 }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: getBase
+
+    Purpose: determine whether the string is Bin, hex, or decimal
+
+    parameters: strNumber- the string from the user
+
+    return char to represent what form the string is 
+
+/*/////////////////////////////////////////////////////////////////
 
 char getBase (const string& strNumber){
   char base = '\0';
@@ -84,7 +99,17 @@ char getBase (const string& strNumber){
   }
   return base;
 }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: getNumber
+
+    Purpose: recieve a numbered string from the user or hex or binary yk
+
+    parameters: prompt - displayed to the user to recieve data
+
+    return: the users string
+
+/*/////////////////////////////////////////////////////////////////
 
 string getNumber (const string& prompt){
   string userString;
@@ -92,7 +117,17 @@ string getNumber (const string& prompt){
   cin >> userString;
   return userString;
 }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: printTitle
+
+    Purpose: print the title to the screen
+
+    parameters: myTitle
+
+    return void
+
+/*/////////////////////////////////////////////////////////////////
 
  void printTitle (const string& myTitle){
   cout << setfill('*') << setw(38) << "*" << endl;
@@ -100,7 +135,17 @@ string getNumber (const string& prompt){
           setfill('*') << setw(5) << "*" << endl;
   cout << setfill('*') << setw(38) << "*" << endl;
  }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: binaryToDecimal
+
+    Purpose: convert the string from a binary to a decimal
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
  string binaryToDecimal (const string& strNumber){
   int decimal = 0;
@@ -114,7 +159,17 @@ string getNumber (const string& prompt){
     }
     return to_string(decimal);
  }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: decimalToBinary
+
+    Purpose: convert the string from a decimal to a binary
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
   string decimalToBinary (const string& strNumber){
     int number = stoi(strNumber);
@@ -131,7 +186,17 @@ string getNumber (const string& prompt){
     reverse(binaryString.begin(), binaryString.end());
     return binaryString;
   }
-  /**/////////////////////////////////////////////////////////////////
+ /*/////////////////////////////////////////////////////////////////
+
+    function: decimalToHex
+
+    Purpose: convert the string from a decimal to a hexadecimal
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
   string decimalToHex (const string& strNumber){
     int length = stoi(strNumber);
@@ -157,7 +222,17 @@ string getNumber (const string& prompt){
     reverse(hexString.begin(), hexString.end());
     return hexString;
   }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: hexToDecimal
+
+    Purpose: convert the string from a hex to a decimal
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
   string hexToDecimal (const string& strNumber){
     int decimal = 0;
@@ -173,12 +248,32 @@ string getNumber (const string& prompt){
     return to_string(decimal);
 
   }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: hexToBinary
+
+    Purpose: convert the string from a hex to a binary
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
 string hexToBinary (const string& strNumber){
   return decimalToBinary(hexToDecimal(strNumber));
 }
-/**/////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////
+
+    function: binaryToHex
+
+    Purpose: convert the string from a binary to a hex
+
+    parameters: strNumber- the users string
+
+    return: converted string
+
+/*/////////////////////////////////////////////////////////////////
 
  string binaryToHex (const string& strNumber){
   return decimalToHex(binaryToDecimal(strNumber));
